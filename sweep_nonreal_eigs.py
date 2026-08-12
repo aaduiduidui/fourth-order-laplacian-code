@@ -60,7 +60,10 @@ def fornberg_origin(z, x, m=0):
 def fd_mat_dirichlet_origin(m, n):
     mat_temp = [[Fraction(0) for _ in range(n + 2)] for _ in range(n + 2)]
     alpha = [Fraction(i) for i in range(-(m - 1) // 2, (m - 1) // 2 + 1)]
-    coe = [fornberg_origin(i, alpha, 2)[2] for i in alpha[: (m + 1) // 2]]
+    coe = [
+        [-value for value in fornberg_origin(i, alpha, 2)[2]]
+        for i in alpha[: (m + 1) // 2]
+    ]
     half_len = len(coe)
     for i in range(half_len - 1):
         coe.append(coe[half_len - 2 - i][::-1])

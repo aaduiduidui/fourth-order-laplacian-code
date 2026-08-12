@@ -10,8 +10,8 @@ floating-point eigenvalue computation is used to establish a claim.
 
 - Python 3.10 or newer
 - SymPy 1.14.0
-- Matplotlib 3.10.8 (used only to reproduce the high-order figure)
-
+- Matplotlib 3.10.8
+ 
 Install the pinned dependencies from the repository root:
 
 ```bash
@@ -31,8 +31,7 @@ its finite-difference stencils, forms its upper and lower parity blocks, and
 checks the two characteristic-polynomial formulas from the
 Bramble--Hubbard characteristic-polynomial lemma coefficient by coefficient.
 The comparison is performed in the exact field
-`QQ(exp(I*pi/(n+1)))`; this is important for `n=6`, where a numerical
-simplification would not constitute a proof.
+`QQ(exp(I*pi/(n+1)))`.
 
 ### 2. Fourth-order one-sided characteristic polynomials
 
@@ -52,11 +51,7 @@ python verify_onesided_root_counts.py
 For `n = 5, 6, 7`, this applies exact rational Sturm sequences to the upper
 and lower characteristic polynomials.  It verifies that they have
 `ceil(n/2)` and `floor(n/2)` distinct roots in `(0,+infinity)`, respectively.
-It also checks square-freeness and, for `n=5`, verifies
-
-```text
-f_L(z) = (z - 13)(z - 36).
-```
+It also checks square-freeness.
 
 ### 4. High-order nonreal-eigenvalue counts
 
@@ -68,25 +63,13 @@ For matrix dimension `n=50` and stencil widths
 `m=5,7,...,41`, this script constructs the one-sided finite-difference
 matrices with `Fraction` coefficients, computes their characteristic
 polynomials and exact real-root counts, and reports the number of nonreal
-eigenvalues.  The expected sequence is
-
-```text
-0, 4, 4, 4, 8, 8, 8, 10, 12, 12, 14, 16, 16, 18, 20, 20, 22, 24, 24.
-```
-
-It writes the exact counts and the reproduced plot to `results/` as CSV, PNG,
-and PDF files.  Matplotlib is used only for rendering the plot, not for the
-spectral certification.
+eigenvalues. 
 
 ## Scaling convention
 
 The fourth-order experiments omit the common positive factor
 `1/(12*h**2)`, as in the spectral-analysis sections of the paper.  The
-high-order experiment uses the weights for `+u''`, whereas the paper uses
-`-u''`, and it clears rational denominators before computing the
-characteristic polynomial.  Thus its matrix differs from the paper's matrix
-by a nonzero real scalar.  Such a scaling changes the eigenvalue scale and,
-possibly, their signs, but not whether an eigenvalue is real or nonreal.
+high-order experiment also omit the corresponding factors. Such a scaling does not change whether an eigenvalue is real or nonreal.
 
 Every script prints `RESULT: PASS` or completes the stated sweep on success.
 The three verification scripts return a nonzero exit status if any exact
