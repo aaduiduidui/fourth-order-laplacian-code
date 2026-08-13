@@ -168,16 +168,13 @@ def make_plot(rows, png_path, pdf_path):
         fig.patch.set_facecolor("white")
         ax.set_facecolor("white")
 
-        ax.plot(
+        bars = ax.bar(
             ms,
             nonreal,
-            color="black",
-            linewidth=0.9,
-            marker="o",
-            markersize=3.2,
-            markerfacecolor="white",
-            markeredgecolor="black",
-            markeredgewidth=0.8,
+            width=1.35,
+            facecolor="0.82",
+            edgecolor="black",
+            linewidth=0.7,
         )
 
         ax.set_xlabel(r"Stencil width $m = 2\ell + 1$")
@@ -186,21 +183,10 @@ def make_plot(rows, png_path, pdf_path):
         ax.xaxis.set_minor_locator(FixedLocator(ms))
         ax.yaxis.set_major_locator(MaxNLocator(integer=True))
         ax.grid(axis="y", which="major", color="0.85", linestyle=":", linewidth=0.5)
-        ax.margins(x=0.03, y=0.14)
+        ax.margins(x=0.02, y=0.14)
 
-        for i, (m, y) in enumerate(zip(ms, nonreal)):
-            if i > 0 and y == nonreal[i - 1]:
-                continue
-            ax.annotate(
-                f"{y}",
-                (m, y),
-                textcoords="offset points",
-                xytext=(0, 5),
-                ha="center",
-                va="bottom",
-                fontsize=7,
-                color="black",
-            )
+        ax.bar_label(bars, labels=[str(value) for value in nonreal], padding=2,
+                     fontsize=6.5, color="black")
 
         png_path.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(png_path, dpi=600, bbox_inches="tight")
