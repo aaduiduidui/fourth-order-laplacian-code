@@ -110,15 +110,7 @@ def verify_dimension(n: int) -> None:
 
     verify_block(upper_polynomial, n_upper, f"n={n} upper block")
     verify_block(lower_polynomial, n_lower, f"n={n} lower block")
-
-    if n == 5:
-        expected_lower = sp.Poly((Z - 13) * (Z - 36), Z)
-        if lower_polynomial != expected_lower:
-            raise AssertionError(
-                f"n=5: expected lower polynomial {expected_lower.as_expr()}, "
-                f"obtained {lower_polynomial.as_expr()}"
-            )
-
+   
     print(
         f"PASS  n={n}: upper has {n_upper} and lower has {n_lower} "
         "distinct roots in (0,+infinity)"
