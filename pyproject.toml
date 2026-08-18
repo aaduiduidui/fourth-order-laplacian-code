@@ -11,6 +11,7 @@ requires-python = ">=3.10"
 dependencies = [
     "sympy==1.14.0",
     "matplotlib==3.10.8",
+    "gmpy2==2.2.2",
 ]
 
 [tool.setuptools]
