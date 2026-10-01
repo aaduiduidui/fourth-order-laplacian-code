@@ -19,5 +19,5 @@ py-modules = [
     "verify_bh_charpoly",
     "verify_onesided_charpoly",
     "verify_onesided_root_counts",
-    "sweep_nonreal_eigs",
+    "count_nonreal_eigs",
 ]

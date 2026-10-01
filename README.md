@@ -56,7 +56,7 @@ It also checks square-freeness.
 ### 4. High-order nonreal-eigenvalue counts
 
 ```bash
-python sweep_nonreal_eigs.py
+python count_nonreal_eigs.py
 ```
 
 For matrix dimension `n=50` and stencil widths
